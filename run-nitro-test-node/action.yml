@@ -31,6 +31,10 @@ inputs:
   token-bridge-branch:
     required: false
     description: "The token-bridge-contracts branch to use"
+  eigenda:
+    required: false
+    default: "false"
+    description: "Whether to enable eigenda"
 runs:
   using: "composite"
   steps:
@@ -61,7 +65,12 @@ runs:
           ${{ inputs.l3-node == 'true' && '--l3node' || '' }} \
           ${{ inputs.no-token-bridge == 'true' && '--no-tokenbridge' || '--tokenbridge' }} \
           ${{ inputs.l3-node == 'true' && inputs.no-l3-token-bridge != 'true' && '--l3-token-bridge' || '' }} \
+<<<<<<< Updated upstream
           ${{ inputs.args }} &
+=======
+          ${{ inputs.eigenda == 'true' && '--eigenda' || '' }}
+          ${{ inputs.args }}
+>>>>>>> Stashed changes
 
     - name: Wait for nitro startup
       shell: bash
